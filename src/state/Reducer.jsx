@@ -10,5 +10,5 @@ function reducer(state, action){
             return state
         case 'delete-category':
             return state
-}
+    }
 }
