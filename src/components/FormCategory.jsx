@@ -13,16 +13,14 @@ const FormCategory = () => {
     if(category){
       dispatch({
         type: 'add-category',
-        payload: {
-          category
-        }
+        name: category        
       })
     }
   }
 
   const addCategory = (event) =>{
     const entryCategory = event.target.value
-    setCategory(entryCategory)
+    setCategory(entryCategory)    
   }
 
   return (

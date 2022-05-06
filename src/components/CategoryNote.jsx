@@ -10,17 +10,21 @@ const CategoryNote = () => {
   const[id, setId] = useState('')
   const [notesList, setNotesList] = useState([])
 
-  const removeNote = (noteId) => {
-
+  const removeNote = (note) => {
     dispatch({
       type: 'delete-note',
-      payload: {
-        }
+      payload: note
+      
     })
   }
 
-  const updateNote = (notetId) => {
-    
+  const updateNote = (note) => {
+    dispatch({
+      type: 'update-note',
+      payload: note,
+      newTitle: "prueba"
+      
+    })
   }
 
   const removeCategory = (categoryId) => {
@@ -37,22 +41,17 @@ const CategoryNote = () => {
   return (
     <div>      
       <h2>
-        {state.listOfCategories.map((category) => (
-          <div>
+        {state.map((category) => (
+          <div key={category.id}>
             <hr/>
             <Category category={category} removeCategory={removeCategory} />
             <hr/>
             {category.notes.map(note => (
-              <Note removeNote={removeNote} note={note} updateNote={updateNote}/>
+              <Note key={note.id} removeNote={removeNote} note={note} updateNote={updateNote}/>
             ) )}
           </div>
         ))}
-      </h2>
-
-
-
-      
-      
+      </h2>     
     </div>
   )
 }

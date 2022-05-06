@@ -2,21 +2,40 @@
 function reducer(state, action){    
     switch(action.type){
         case 'add-note':
-            //Logica
-            console.log("Adding a note!!!")
             return state
         case 'delete-note':
-            console.log("Deleting note!!!")
-        case 'update-note':            
+            const categoryParentToDelNote = state.find((category)=> category.id === action.payload.fkCategoryId)
+            if(categoryParentToDelNote){
+                const notesWithDeleted = categoryParentToDelNote.notes.filter((note) => note.id !== action.payload.id)
+                const newState = state.map((category)=> category.id === categoryParentToDelNote.id ? {...categoryParentToDelNote, notes:notesWithDeleted} : category)
+                return newState
+            }
             return state
+
+        case 'update-note': 
+            const categoryParentToUpdateNote = state.find((category) =>category.id === action.payload.fkCategoryId)
+            if(categoryParentToUpdateNote){
+                const notesWithUpdated = categoryParentToUpdateNote.notes.map((note) => note.id === action.payload.id ? {...note, title:action.newTitle}: note)
+                const newState = state.map((category) => category.id === categoryParentToUpdateNote.id ? {...categoryParentToUpdateNote, notes:notesWithUpdated}: category)
+                return newState
+            }        
+            return state
+
         case 'add-category':
-            console.log("Adding a category!!!")
+            const newCategory = {
+                id: Math.floor(Math.random()*100),
+                name: action.name,
+                notes: []
+            }            
+            if(newCategory){
+                const newState = [...state, newCategory]
+                console.log(newState)
+                return newState
+            }
             return state
-        case 'delete-category':            
-            const newListOfCategories = state.listOfCategories.filter(Category => Category.id !== action.payload.id)
-            console.log(newListOfCategories)
-            const newStateCategoryDeleted = {...state, listOfCategories: newListOfCategories}
-            return newStateCategoryDeleted
+
+        case 'delete-category':  
+            return state.filter((category)=> category.id !== action.payload.id)
     }
 }
 
