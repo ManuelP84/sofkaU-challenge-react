@@ -1,13 +1,18 @@
-import './App.css'
+import "./App.css";
+import CategoryNote from "./components/CategoryNote";
+import FormCategory from "./components/FormCategory";
+import FormNote from "./components/FormNote";
+import StoreProvider from "./state/StoreProvider"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">  
-    <h1>Hello</h1>    
-    </div>
-  )
+    <StoreProvider>
+      <FormCategory/>
+      <FormNote/>
+      <CategoryNote />
+    </StoreProvider>
+  );
 }
 
-export default App
+export default App;
