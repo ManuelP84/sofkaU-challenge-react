@@ -2,6 +2,8 @@ import { useContext, useState, useRef } from "react"
 
 const EditNote = ({updateNote, note}) => {
 
+  const formRef = useRef(null)
+
   const [noteTitle, setNoteTitle] = useState('');
 
   const editNote = (event) =>{
@@ -10,10 +12,10 @@ const EditNote = ({updateNote, note}) => {
   }
 
   return (
-    <div>
+    <form ref={formRef}>
       <input onChange={editNote} type="text" name="editNote" placeholder="Edit note"/>
-      <button onClick={() => updateNote(note, noteTitle)}>Change title</button>
-    </div>
+      <button onClick={(event) => updateNote(event, note, noteTitle, formRef)}>Change title</button>
+    </form>
   )
 
 }

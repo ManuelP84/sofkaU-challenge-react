@@ -17,12 +17,12 @@ const Note = ({note, removeNote}) => {
       type: 'update-note',
       payload:{
         note: newNote
-      }
- 
+      } 
     }) 
   }
 
-  const updateNote = (note, noteTitle) => {
+  const updateNote = (event, note, noteTitle, formRef) => {
+    event.preventDefault()
     const newNote = {...note, title: noteTitle}
     console.log(newNote)
    dispatch({
@@ -32,6 +32,7 @@ const Note = ({note, removeNote}) => {
       }
  
     })
+    formRef.current.reset()
   }
 
   const displayEdit = () =>{
