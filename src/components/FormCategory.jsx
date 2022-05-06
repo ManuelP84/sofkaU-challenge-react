@@ -7,6 +7,7 @@ const FormCategory = () => {
 
   const {state, dispatch} = useContext(Store)
 
+
   const onAdd = (event)=>{
     event.preventDefault()
     if(category){

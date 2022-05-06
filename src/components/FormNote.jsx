@@ -1,9 +1,7 @@
 import { useContext, useState } from "react"
 import { Store } from "../state/StoreProvider";
 
-const FormNote = () => {
-
-  
+const FormNote = () => {  
 
   const [note, setNote] = useState('');
 
