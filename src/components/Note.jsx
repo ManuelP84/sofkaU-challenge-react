@@ -7,12 +7,11 @@ const Note = ({note, removeNote}) => {
 
   const {state, dispatch} = useContext(Store)
 
-  const [showEdit, setShowEdit] = useState(true)
+  const [showEdit, setShowEdit] = useState(false)
   
   const onChecked = (event, note) =>{
     const checked = event.currentTarget.checked
     const newNote = {...note, done:checked}
-    console.log(newNote)
     dispatch({
       type: 'update-note',
       payload:{
@@ -24,14 +23,14 @@ const Note = ({note, removeNote}) => {
   const updateNote = (event, note, noteTitle, formRef) => {
     event.preventDefault()
     const newNote = {...note, title: noteTitle}
-    console.log(newNote)
-   dispatch({
+    dispatch({
       type: 'update-note',
       payload:{
         note: newNote
       }
  
     })
+
     formRef.current.reset()
   }
 

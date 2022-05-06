@@ -8,7 +8,9 @@ const EditNote = ({updateNote, note}) => {
 
   const editNote = (event) =>{
     const editedNote = event.target.value
-    setNoteTitle(editedNote)
+    if(editedNote){
+      setNoteTitle(editedNote)
+    }     
   }
 
   return (
@@ -17,7 +19,6 @@ const EditNote = ({updateNote, note}) => {
       <button onClick={(event) => updateNote(event, note, noteTitle, formRef)}>Change title</button>
     </form>
   )
-
 }
 
 export default EditNote

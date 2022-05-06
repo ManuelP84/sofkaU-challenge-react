@@ -19,11 +19,12 @@ const FormCategory = () => {
       })
       formRef.current.reset()
     }
+    setCategory('')
   }
 
   const addCategory = (event) =>{
     const entryCategory = event.target.value
-    setCategory(entryCategory)    
+    setCategory(entryCategory) 
   }
 
   return (

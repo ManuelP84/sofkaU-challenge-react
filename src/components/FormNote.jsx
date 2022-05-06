@@ -17,6 +17,7 @@ const FormNote = ({categoryId}) => {
       })
       formRef.current.reset()
     }
+    setNote('')
   }
 
   const {state, dispatch} = useContext(Store)

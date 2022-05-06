@@ -8,12 +8,10 @@ function reducer(state, action){
                 done: false,
                 fkCategoryId: action.categoryId,
             }
-            console.log(newNote)
             if(newNote){
                 const categoryParentNewNote = state.find((category) => category.id === action.categoryId)
                 const parentNotes = [...categoryParentNewNote.notes, newNote]
                 const parentWithNewNote = {...categoryParentNewNote, notes:parentNotes}
-                console.log(parentWithNewNote)
                 const newState = state.map((category) => category.id === action.categoryId ? {...parentWithNewNote} : category)
                 return newState            
             }
@@ -32,8 +30,6 @@ function reducer(state, action){
             if(categoryParentToUpdateNote){
                 const notesWithUpdated = categoryParentToUpdateNote.notes.map((note) => note.id === action.payload.note.id ? {...action.payload.note}: note)
                 const newState = state.map((category) => category.id === categoryParentToUpdateNote.id ? {...categoryParentToUpdateNote, notes:notesWithUpdated}: category)
-                console.log(newState)
-                console.log(notesWithUpdated)
                 return newState
             }
             return state
@@ -46,7 +42,6 @@ function reducer(state, action){
             }            
             if(newCategory){
                 const newState = [...state, newCategory]
-                console.log(newState)
                 return newState
             }
             return state
