@@ -1,7 +1,9 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useRef } from "react"
 import { Store } from "../state/StoreProvider";
 
-const FormNote = () => {  
+const FormNote = ({categoryId}) => {  
+
+  const formRef = useRef(null) 
 
   const [note, setNote] = useState('');
 
@@ -10,10 +12,10 @@ const FormNote = () => {
     if(note){
       dispatch({
         type: 'add-note',
-        payload: {
-          note
-        }
+        title: note,
+        categoryId: categoryId
       })
+      formRef.current.reset()
     }
   }
 
@@ -25,7 +27,7 @@ const FormNote = () => {
   }
 
   return (
-    <form>
+    <form ref={formRef}>
      <input onChange={addNote} type="text" name="note" placeholder="Note"/>
      <button onClick={onAdd}>Add a new note!</button>
    </form>

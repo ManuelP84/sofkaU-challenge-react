@@ -1,7 +1,9 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useRef } from "react"
 import { Store } from "../state/StoreProvider";
 
 const FormCategory = () => {
+
+  const formRef = useRef(null) 
 
   const [category, setCategory] = useState('')
 
@@ -15,6 +17,7 @@ const FormCategory = () => {
         type: 'add-category',
         name: category        
       })
+      formRef.current.reset()
     }
   }
 
@@ -24,7 +27,7 @@ const FormCategory = () => {
   }
 
   return (
-   <form>
+   <form ref={formRef}>
      <input onChange={addCategory} type="text" name="category" placeholder="Category"/>
      <button onClick={onAdd}>New Category</button>
    </form>

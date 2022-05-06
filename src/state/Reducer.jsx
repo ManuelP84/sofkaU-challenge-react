@@ -2,6 +2,21 @@
 function reducer(state, action){    
     switch(action.type){
         case 'add-note':
+            const newNote = {
+                id: Math.floor(Math.random()*100),
+                title: action.title,
+                done: false,
+                fkCategoryId: action.categoryId,
+            }
+            console.log(newNote)
+            if(newNote){
+                const categoryParentNewNote = state.find((category) => category.id === action.categoryId)
+                const parentNotes = [...categoryParentNewNote.notes, newNote]
+                const parentWithNewNote = {...categoryParentNewNote, notes:parentNotes}
+                console.log(parentWithNewNote)
+                const newState = state.map((category) => category.id === action.categoryId ? {...parentWithNewNote} : category)
+                return newState            
+            }
             return state
         case 'delete-note':
             const categoryParentToDelNote = state.find((category)=> category.id === action.payload.fkCategoryId)

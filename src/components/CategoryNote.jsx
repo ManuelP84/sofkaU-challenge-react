@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Store } from '../state/StoreProvider';
 import Category from './Category';
+import FormNote from "../components/FormNote";
 import Note from './Note';
 
 const CategoryNote = () => {
@@ -45,6 +46,7 @@ const CategoryNote = () => {
           <div key={category.id}>
             <hr/>
             <Category category={category} removeCategory={removeCategory} />
+            <FormNote categoryId={category.id}/>
             <hr/>
             {category.notes.map(note => (
               <Note key={note.id} removeNote={removeNote} note={note} updateNote={updateNote}/>
