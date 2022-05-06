@@ -11,7 +11,7 @@ const initialState = [
         title: "Title by default 0",
         done: false,
         fkCategoryId: "0",
-      },
+      },      
     ],
   },
   {
@@ -21,7 +21,7 @@ const initialState = [
       {
         id: "1",
         title: "Title by default 1",
-        done: false,
+        done: true,
         fkCategoryId: "1",
       },
       {

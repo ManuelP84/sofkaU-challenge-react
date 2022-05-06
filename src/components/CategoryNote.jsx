@@ -17,16 +17,7 @@ const CategoryNote = () => {
       payload: note
       
     })
-  }
-
-  const updateNote = (note) => {
-    dispatch({
-      type: 'update-note',
-      payload: note,
-      newTitle: "prueba"
-      
-    })
-  }
+  }  
 
   const removeCategory = (categoryId) => {
     dispatch({
@@ -36,6 +27,8 @@ const CategoryNote = () => {
       }
     })
   }
+
+  
 
   const {state, dispatch} = useContext(Store)
 
@@ -49,7 +42,7 @@ const CategoryNote = () => {
             <FormNote categoryId={category.id}/>
             <hr/>
             {category.notes.map(note => (
-              <Note key={note.id} removeNote={removeNote} note={note} updateNote={updateNote}/>
+              <Note key={note.id} removeNote={removeNote} note={note}/>
             ) )}
           </div>
         ))}
