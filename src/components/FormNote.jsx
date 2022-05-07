@@ -28,9 +28,11 @@ const FormNote = ({categoryId}) => {
   }
 
   return (
-    <form ref={formRef}>
-     <input onChange={addNote} type="text" name="note" placeholder="Note"/>
-     <button onClick={onAdd}>Add a new note!</button>
+    <form ref={formRef} className="form-control border border-5">
+     <input className="form-control  form-control-lg  mt-3" onChange={addNote} type="text" name="note" placeholder="Note"/>
+     <div className="d-grid gap-2 col-6 mx-auto m-3">
+        <button className="btn btn-success"  onClick={onAdd}>Add a new note!</button>
+     </div>
    </form>
   )
 }

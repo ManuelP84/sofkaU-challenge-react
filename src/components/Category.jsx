@@ -2,9 +2,9 @@ import React from 'react'
 
 const Category = ({category, removeCategory}) => {
   return (
-    <div>
+    <div className="m-3  d-flex justify-content-between">
       <>{`${category.name}`}</>
-      <button onClick={() => removeCategory(category.id)}>Remove</button>
+      <button className="btn btn-danger ms-5" onClick={() => removeCategory(category.id)}>Remove</button>
     </div>
   )
 }

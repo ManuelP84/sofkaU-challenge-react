@@ -40,13 +40,13 @@ const Note = ({note, removeNote}) => {
   
 
   return (
-    <div>
-      <h5>{`${note.title}`}</h5>
-      <button onClick={() => removeNote(note)}>Remove</button>
-      <button onClick={displayEdit}>Edit</button>
+    <div className="border border-dark m-3 rounded border-2 d-flex justify-content-evenly bg-primary p-2 text-dark bg-opacity-25">
+      <h5 className="fw-bold m-2">{`${note.title}`}</h5>
+      <button className="btn btn-danger me-2 m-1 " onClick={() => removeNote(note)}>Remove</button>
+      <button className="btn btn-warning" onClick={displayEdit}>Edit</button>
       {showEdit && <EditNote updateNote={updateNote} note={note}/>}
       <label>Done</label>
-      <input type="checkbox" onChange={(event) =>onChecked(event, note)} checked={note.done}/>
+      <input className="form-check-input left" type="checkbox" onChange={(event) =>onChecked(event, note)} checked={note.done}/>
     </div>
   )
 }

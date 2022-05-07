@@ -38,13 +38,16 @@ const CategoryNote = () => {
         {state.map((category) => (
           <div key={category.id}>
             <hr/>
+            <div className="m-5 border border-5 border-dark">
             <Category category={category} removeCategory={removeCategory} />
-            <FormNote categoryId={category.id}/>
-            <hr/>
+            <div className="m-5">
+              <FormNote categoryId={category.id}/>
+            </div>
             {category.notes.map(note => (
               <Note key={note.id} removeNote={removeNote} note={note}/>
             ) )}
           </div>
+        </div>
         ))}
       </h2>     
     </div>

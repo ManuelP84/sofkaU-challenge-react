@@ -15,8 +15,8 @@ const EditNote = ({updateNote, note}) => {
 
   return (
     <form ref={formRef}>
-      <input onChange={editNote} type="text" name="editNote" placeholder="Edit note"/>
-      <button onClick={(event) => updateNote(event, note, noteTitle, formRef)}>Change title</button>
+      <input className="form-control" onChange={editNote} type="text" name="editNote" placeholder="Edit note"/>
+      <button className="btn btn-success" onClick={(event) => updateNote(event, note, noteTitle, formRef)}>Change title</button>
     </form>
   )
 }

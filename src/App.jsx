@@ -7,7 +7,9 @@ function App() {
 
   return (
     <StoreProvider>
-      <FormCategory/>      
+      <div className="m-5 ">
+        <FormCategory/>   
+      </div>
       <CategoryNote>      
       </CategoryNote>
     </StoreProvider>
