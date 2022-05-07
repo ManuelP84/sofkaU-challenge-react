@@ -5,8 +5,8 @@ function reducer(state, action){
             const newState = [...state, ...action.payload]
             console.log(newState)
             return newState
-        case 'add-note':    
-                 
+
+        case 'add-note':                 
             if(action.payload){
                 const categoryParentNewNote = state.find((category) => category.id === action.payload.fkCategoryId)
                 const parentNotes = [...categoryParentNewNote.notes, action.payload]

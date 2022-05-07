@@ -13,12 +13,20 @@ const CategoryNote = () => {
   const[id, setId] = useState('')
   const [notesList, setNotesList] = useState([])
 
-  const removeNote = (note) => {
-    dispatch({
-      type: 'delete-note',
-      payload: note
-      
-    })
+  const removeNote = async(note) => {
+    console.log(note.id)
+    let response = await fetch(`http://localhost:8081/api/delete/note/${note.id}`,
+      {
+        method: 'DELETE'
+      })
+      if(response.status == 200){
+        console.log("Borradoooo")
+        
+        dispatch({
+          type: 'delete-note',
+          payload: note          
+        })
+      }
   }  
 
   const removeCategory = async(categoryId) => {
