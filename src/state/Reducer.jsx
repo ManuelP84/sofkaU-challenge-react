@@ -30,9 +30,9 @@ function reducer(state, action){
             return state
 
         case 'update-note':            
-            const categoryParentToUpdateNote = state.find((category) =>category.id === action.payload.note.fkCategoryId)
+            const categoryParentToUpdateNote = state.find((category) =>category.id === action.payload.fkCategoryId)
             if(categoryParentToUpdateNote){
-                const notesWithUpdated = categoryParentToUpdateNote.notes.map((note) => note.id === action.payload.note.id ? {...action.payload.note}: note)
+                const notesWithUpdated = categoryParentToUpdateNote.notes.map((note) => note.id === action.payload.id ? {...action.payload}: note)
                 const newState = state.map((category) => category.id === categoryParentToUpdateNote.id ? {...categoryParentToUpdateNote, notes:notesWithUpdated}: category)
                 return newState
             }
