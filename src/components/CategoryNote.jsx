@@ -21,13 +21,20 @@ const CategoryNote = () => {
     })
   }  
 
-  const removeCategory = (categoryId) => {
-    dispatch({
-      type: 'delete-category',
-      payload: {
-        id:categoryId     
+  const removeCategory = async(categoryId) => {
+    let response = await fetch(`http://localhost:8081/api/delete/category/${categoryId}`,
+      {
+        method: 'DELETE'
+      })
+      if(response.status == 200){
+        dispatch({
+          type: 'delete-category',
+          payload: {
+            id:categoryId     
+          }
+        })
       }
-    })
+
   }
 
   useEffect(()=>{
