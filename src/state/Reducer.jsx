@@ -39,13 +39,10 @@ function reducer(state, action){
             return state
 
         case 'add-category':
-            const newCategory = {
-                id: Math.floor(Math.random()*100),
-                name: action.name,
-                notes: []
-            }            
-            if(newCategory){
-                const newState = [...state, newCategory]
+            if(action.payload){
+                console.log('New note!!')
+                const newState = [...state, action.payload]
+                console.log(newState)
                 return newState
             }
             return state

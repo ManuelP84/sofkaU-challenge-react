@@ -48,7 +48,7 @@ const CategoryNote = () => {
     return data
   }
 
-  
+
 
   return (
     <div>      

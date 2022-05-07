@@ -10,12 +10,27 @@ const FormCategory = () => {
   const {state, dispatch} = useContext(Store)
 
 
-  const onAdd = (event)=>{
+  const onAdd = async (event)=>{
     event.preventDefault()
     if(category){
+      const categoryForm = {
+        name: category,
+        notes: []
+      }
+      let categorieSavedPromise = await fetch(`http://localhost:8081/api/create/category`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(categoryForm)
+      })
+
+      let categoriSaved = await categorieSavedPromise.json()
+
       dispatch({
         type: 'add-category',
-        name: category        
+        payload: categoriSaved       
       })
       formRef.current.reset()
     }
