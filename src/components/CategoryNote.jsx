@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Store } from '../state/StoreProvider';
 import Category from './Category';
 import FormNote from "../components/FormNote";
@@ -6,6 +6,8 @@ import Note from './Note';
 
 const CategoryNote = () => {
 
+
+  const {state, dispatch} = useContext(Store)
   const[category, setCategory] = useState({})
   const [name, setName] = useState('')
   const[id, setId] = useState('')
@@ -28,9 +30,25 @@ const CategoryNote = () => {
     })
   }
 
-  
+  useEffect(()=>{
+    let listOfCategories = fetchAllCategories().then(
+      categories =>{    
+        let action = {
+          type: 'get-categories',
+          payload: categories
+        }
+        dispatch(action)
+      }
+    )
+  },[])
 
-  const {state, dispatch} = useContext(Store)
+  const fetchAllCategories = async() =>{
+    let response = await fetch(`http://localhost:8081/api/get/categories`)
+    let data = await response.json()
+    return data
+  }
+
+  
 
   return (
     <div>      
