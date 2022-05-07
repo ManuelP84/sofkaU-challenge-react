@@ -7,13 +7,29 @@ const FormNote = ({categoryId}) => {
 
   const [note, setNote] = useState('');
 
-  const onAdd = (event)=>{
+  const onAdd = async (event)=>{
     event.preventDefault()
     if(note){
+      const noteForm = {
+        title: note,
+        done: false,
+        fkCategoryId: categoryId
+      }
+      
+      let response = await fetch(`http://localhost:8081/api/create/note`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(noteForm)
+      })
+
+      let noteSaved = await response.json()
+      console.log(noteSaved);
       dispatch({
         type: 'add-note',
-        title: note,
-        categoryId: categoryId
+        payload: noteSaved
       })
       formRef.current.reset()
     }

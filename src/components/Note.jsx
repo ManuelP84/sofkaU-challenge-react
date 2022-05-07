@@ -12,7 +12,6 @@ const Note = ({note, removeNote}) => {
   const onChecked = async(event, note) =>{
     //const checked = event.currentTarget.checked
     const newNote = {...note, done:!note.done}
-    console.log(newNote)
     let response = await fetch(`http://localhost:8081/api/update/note`,
     {                                                     
       method: 'PUT',
@@ -22,20 +21,19 @@ const Note = ({note, removeNote}) => {
       },
       body: JSON.stringify(newNote)
     })
-
-    console.log(response);    
      
     let noteUpdated = await response.json()
-    console.log(noteUpdated)
+
     dispatch({
       type: 'update-note',
       payload:noteUpdated      
     })   
   }
 
-  const updateNote = (event, note, noteTitle, formRef) => {
+  const updateNote = async (event, note, noteTitle, formRef) => {
     event.preventDefault()
     const newNote = {...note, title: noteTitle}
+
     dispatch({
       type: 'update-note',
       payload:{
