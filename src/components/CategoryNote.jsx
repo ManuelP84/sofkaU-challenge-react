@@ -6,7 +6,6 @@ import Note from './Note';
 
 const CategoryNote = () => {
 
-
   const {state, dispatch} = useContext(Store)
   const[category, setCategory] = useState({})
   const [name, setName] = useState('')
@@ -47,11 +46,12 @@ const CategoryNote = () => {
 
   useEffect(()=>{
     let listOfCategories = fetchAllCategories().then(
-      categories =>{    
+      category =>{    
         let action = {
           type: 'get-categories',
-          payload: categories
+          payload: category
         }
+        console.log(category)
         dispatch(action)
       }
     )

@@ -33,14 +33,28 @@ const Note = ({note, removeNote}) => {
   const updateNote = async (event, note, noteTitle, formRef) => {
     event.preventDefault()
     const newNote = {...note, title: noteTitle}
+    let response = await fetch(`http://localhost:8081/api/update/note`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(newNote)
+      })
 
-    dispatch({
-      type: 'update-note',
-      payload:{
-        note: newNote
+      let noteSaved = await response.json()
+
+      if(response.status == 200){
+        dispatch({
+          type: 'update-note',
+          payload:{
+            note: noteSaved
+          } 
+        })
+        window.location.replace('');
       }
- 
-    })
+
 
     formRef.current.reset()
   }
